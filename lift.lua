@@ -161,7 +161,7 @@ for i, folder in ipairs(workspace.Paths:GetChildren()) do
 		local AMOUNT_OF_CARS = totalDistance / 50
 	end
 
-	local waitTime = totalDistance / AMOUNT_OF_CARS / SPEED
+	--local waitTime = totalDistance / AMOUNT_OF_CARS / SPEED
 
 	local targets = {}
 	local alignPositions = {}
@@ -228,7 +228,7 @@ for i, folder in ipairs(workspace.Paths:GetChildren()) do
 				for i, target in ipairs(targets) do
 					alignPositions[i].MaxVelocity = speeds[nextI]
 					target.CFrame = CFrames[nextI]
-					wait(waitTime)
+					wait(totalDistance / AMOUNT_OF_CARS / speeds[nextI])
 				end
 			end)
 
