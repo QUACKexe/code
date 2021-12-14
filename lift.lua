@@ -222,10 +222,11 @@ for i, folder in ipairs(workspace.Paths:GetChildren()) do
 			local magnitude = (positions[nextI] - positions[i]).Magnitude
 
 			i = nextI
-			alignPositions[i].MaxVelocity = speeds[nextI]
+			
 
 			spawn(function()
 				for i, target in ipairs(targets) do
+					alignPositions[i].MaxVelocity = speeds[nextI]
 					target.CFrame = CFrames[nextI]
 					wait(waitTime)
 				end
