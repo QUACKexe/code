@@ -232,7 +232,7 @@ for i, folder in ipairs(workspace.Paths:GetChildren()) do
 				end
 			end)
 
-			wait(magnitude / SPEED)
+			wait(magnitude / speeds[nextI])
 		end
 	end)
 
