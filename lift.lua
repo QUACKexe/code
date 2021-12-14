@@ -1,5 +1,5 @@
 local AMOUNT_OF_CARS_2 = 1
-local OVERRIDE = true -- Does nothing so far
+local OVERRIDE = true -- Does work actually lol
 
 local function clone(model, position, parent)
 	local cloned = model:Clone()
