@@ -165,7 +165,7 @@ for i, folder in ipairs(workspace.Paths:GetChildren()) do
 		cable.Anchored = true
 		cable.CanCollide = false
 		cable.CanTouch = false
-		cable.CFrame = CFrames[i] * CFrame.fromOrientation(0, math.rad(90), 0)
+		cable.CFrame = CFrame.lookAt(positions[i], positions[i] + offset) * CFrame.fromOrientation(0, math.rad(90), 0)
 		cable.Position -= offset *.5
 		cable.Size = Vector3.new(offset.Magnitude, .2, .2)
 		cable.Shape = Enum.PartType.Cylinder
@@ -176,13 +176,6 @@ for i, folder in ipairs(workspace.Paths:GetChildren()) do
 		cable.Material = Enum.Material.Sand
 
 		totalDistance += offset.Magnitude
-	end
-	local startCFrame = CFrame.lookAt(positions[1], positions[2])
-
-	if OVERRIDE == true then
-		AMOUNT_OF_CARS = AMOUNT_OF_CARS_2
-	else
-		local AMOUNT_OF_CARS = totalDistance / 50
 	end
 
 	--local waitTime = totalDistance / AMOUNT_OF_CARS / SPEED
