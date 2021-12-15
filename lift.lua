@@ -1,5 +1,5 @@
 local AMOUNT_OF_CARS_2 = 1
-local OVERRIDE = true -- Does work actually lol
+local OVERRIDE = true -- works now yay
 
 local function clone(model, position, parent)
 	local cloned = model:Clone()
@@ -123,17 +123,43 @@ for i, folder in ipairs(workspace.Paths:GetChildren()) do
 		part.CanCollide = false
 		part.Color = Color3.fromRGB(26, 28, 35)
 		part.Size = Vector3.new(.2,.2,.2)
-		part.Material = Enum.Material.Sand
+		part.Material = Enum.Material.SmoothPlastic
 	end
 
 	local totalDistance = 0
+
+	--local CFrames = {}
+	--for i = 1, #positions do
+	--	local prevI = i - 1
+	--	if prevI == 0 then prevI = #positions end
+	--	local offset = positions[i] - positions[prevI]
+	--	CFrames[i] = CFrame.lookAt(positions[i], positions[i] + offset) -- not it either when changing positions[i] to 0 on the 2nd part
+
+	--	local cable = Instance.new("Part")
+	--	cable.Anchored = true
+	--	cable.CanCollide = false
+	--	cable.CanTouch = false
+	--	cable.CFrame = CFrames[i] * CFrame.fromOrientation(0, math.rad(90), 0) --not it
+	--	cable.Position -= offset *.5
+	--	cable.Size = Vector3.new(offset.Magnitude, .2, .2)
+	--	cable.Shape = Enum.PartType.Cylinder
+	--	cable.Color = Color3.fromRGB(26, 28, 35)
+	--	cable.TopSurface = Enum.SurfaceType.Smooth
+	--	cable.BottomSurface = Enum.SurfaceType.Smooth
+	--	cable.Parent = folder
+	--	cable.Material = Enum.Material.SmoothPlastic
+
+	--	totalDistance += offset.Magnitude
+
+	--end
 
 	local CFrames = {}
 	for i = 1, #positions do
 		local prevI = i - 1
 		if prevI == 0 then prevI = #positions end
 		local offset = positions[i] - positions[prevI]
-		CFrames[i] = CFrame.lookAt(positions[i], positions[i] + offset)
+		local flatOffset = offset * Vector3.new(1, 0, 1)
+		CFrames[i] = CFrame.lookAt(positions[i], positions[i] + flatOffset)
 
 		local cable = Instance.new("Part")
 		cable.Anchored = true
@@ -150,9 +176,7 @@ for i, folder in ipairs(workspace.Paths:GetChildren()) do
 		cable.Material = Enum.Material.Sand
 
 		totalDistance += offset.Magnitude
-
 	end
-
 	local startCFrame = CFrame.lookAt(positions[1], positions[2])
 
 	if OVERRIDE == true then
@@ -177,7 +201,7 @@ for i, folder in ipairs(workspace.Paths:GetChildren()) do
 		target.Parent = folder
 		target.Color = Color3.fromRGB(26, 28, 35)
 		target.Transparency = 1
-		target.Material = Enum.Material.Sand
+		target.Material = Enum.Material.SmoothPlastic
 
 		local attachment1 = Instance.new("Attachment", target)
 
