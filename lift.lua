@@ -1,5 +1,6 @@
 local AMOUNT_OF_CARS_2 = 1
 local OVERRIDE = true -- works now yay
+local SPEED = 10
 
 local function clone(model, position, parent)
 	local cloned = model:Clone()
@@ -54,11 +55,11 @@ end
 
 --	local startCFrame = CFrame.lookAt(positions[1], positions[2])
 
---	if OVERRIDE == true then
---		AMOUNT_OF_CARS = AMOUNT_OF_CARS_2
---	else
---		local AMOUNT_OF_CARS = totalDistance / 50
---	end
+	--if OVERRIDE == true then
+	--	AMOUNT_OF_CARS = AMOUNT_OF_CARS_2
+	--else
+	--	AMOUNT_OF_CARS = totalDistance / 50
+	--end
 
 --	local waitTime = totalDistance / AMOUNT_OF_CARS / SPEED
 
@@ -128,6 +129,12 @@ for i, folder in ipairs(workspace.Paths:GetChildren()) do
 
 	local totalDistance = 0
 
+	if OVERRIDE == true then
+		AMOUNT_OF_CARS = AMOUNT_OF_CARS_2
+	else
+		AMOUNT_OF_CARS = totalDistance / 50
+	end
+
 	--local CFrames = {}
 	--for i = 1, #positions do
 	--	local prevI = i - 1
@@ -176,6 +183,20 @@ for i, folder in ipairs(workspace.Paths:GetChildren()) do
 		cable.Material = Enum.Material.Sand
 
 		totalDistance += offset.Magnitude
+	end
+
+	--local waitTime = totalDistance / AMOUNT_OF_CARS / SPEED
+
+	local targets = {}
+	local alignPositions = {}
+
+	local startCFrame = CFrame.lookAt(positions[1], positions[2])
+
+	local AMOUNT_OF_CARS = nil
+	if OVERRIDE == true then
+		AMOUNT_OF_CARS = AMOUNT_OF_CARS_2
+	else
+		AMOUNT_OF_CARS = totalDistance / 50
 	end
 
 	--local waitTime = totalDistance / AMOUNT_OF_CARS / SPEED
